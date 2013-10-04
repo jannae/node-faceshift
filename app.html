@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+    <title></title>
+    <script type="text/javascript" src="jquery-1.10.2.js"></script>
+</head>
+
+<body>
+
+
+    <hr />Received from an OSC app/device at :
+    <div id="status"></div>
+
+    <hr />
+
+    <script src="http://127.0.0.1:8081/socket.io/socket.io.js"></script>
+
+    <script>
+    var oscdata = {};
+    var facedata = {};
+    socket = io.connect('http://127.0.0.1', {
+        port: 8081,
+        rememberTransport: false
+    });
+    console.log('io');
+    socket.on('connect', function() {
+        // sends to socket.io server the host/port of oscServer
+        // and oscClient
+        socket.emit('config', {
+            server: {
+                port: 8338,
+                host: '127.0.0.1'
+            },
+            client: {
+                port: 3334,
+                host: '127.0.0.1'
+            }
+        });
+    });
+
+    socket.on('message', function(obj) {
+        // var status = document.getElementById("status");
+        // status.innerHTML = obj[0][1];
+        // console.log(obj);
+        $.each(obj, function(key, value) {
+            oscdata[value[0]] = value[1];
+            // $('#status').append('<p>key: ' + value[0] + ', value: ' + value[1]+'</p>');
+            // if(key == 53){
+            //     $('#status').empty();
+            // }
+        });
+        var i = 0;
+        $.each(oscdata, function(k, val) {
+            $('#status:not(:has(#'+i+'))').append("<div id='"+i+"'/>");
+            $('#'+i).html('k: ' + k + ', val: ' + val);
+            i++;
+        });
+    });
+
+    </script>
+
+</body>
+
+</html>
