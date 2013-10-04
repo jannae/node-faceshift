@@ -9,7 +9,7 @@
 
 <body>
     <script src="http://127.0.0.1:8081/socket.io/socket.io.js"></script>
-    <h1>Nodejs/Faceshift Experiment</h1>
+    <div id="hdr"><h1>Nodejs/Faceshift Experiment</h1></div>
     <div id="status"></div>
     <script>
     var oscdata = {};
@@ -33,23 +33,25 @@
     });
 
     socket.on('message', function(obj) {
+        //console.log('message');
         $.each(obj, function(key, value) {
             oscdata[value[0]] = value[1];
         });
         var i = 0;
-        console.log(i);
+        // console.log(i);
         $.each(oscdata, function(k, val) {
-            $('#status:not(:has(#gest' + i + '))').append("<div id='gest" + i + "'/>");
-            $('#gest' + i).html('k: ' + k + ', val: ' + val);
+            $('#status:not(:has(#gest' + i + '))').append('<div class="gest" id="gest' + i + '"/>');
+            if (val < 1) {
+                val = val*100;
+            }
+            if (val > 1000){
+                val = 0;
+            }
+            $('#gest' + i).html('<div class="key">' + k + '</div><div class="val">' + val + '</div>');
+            $('#gest' + i + ' > .val').css({'width': val, 'padding-left': val+'px'});
+            // $('#status:not(:has(#gest' + i + '))').append("<div id='gest" + i + "'/>");
+            // $('#gest' + i).html('k: ' + k + ', val: ' + val);
             i++;
-
-            // $('#status:not(:has(#gest' + i + '))').append('<div class="gest" id="gest' + i + '"/>');
-            // $('#gest' + i).html('<div class="key">' + k + '</div><div class="val">' + val + '</div>');
-            // console.log(k);
-            // $('#gest' + i + ' > .val').css({
-            //     'background-color': 'rgb(' + val + ',0,0)',
-            //     'width': val * 100
-            // });
         });
     });
     </script>

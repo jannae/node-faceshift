@@ -5,12 +5,23 @@ BODY {
   font-weight: 300;
   font-size:.8em;
 }
+#hdr {
+  margin: 10px;
+  padding: 2px;
+  border-bottom: 1px solid #999;
+}
 .gest {
   clear:both;
+  width: 100%
+}
+.gest div {
+  margin:5px;
+  padding:2px;
+  border-bottom: 1px solid #999;
 }
 .key {
   float: left;
-  width: 400px;
+  width: 300px;
   display: inline;
 }
 .val {
