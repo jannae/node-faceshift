@@ -1,0 +1,20 @@
+BODY {
+  margin:0;
+  top:0;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  font-size:.8em;
+}
+.gest {
+  clear:both;
+}
+.key {
+  float: left;
+  width: 400px;
+  display: inline;
+}
+.val {
+  float:left;
+  display: inline;
+  background-color: #000099;
+}

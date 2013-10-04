@@ -1,14 +1,16 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
+
 <head>
     <title>Nodejs/Faceshift Experiment</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
+
 <body>
     <script src="http://127.0.0.1:8081/socket.io/socket.io.js"></script>
+    <h1>Nodejs/Faceshift Experiment</h1>
     <div id="status"></div>
-    <hr />
-
     <script>
     var oscdata = {};
     var facedata = {};
@@ -35,10 +37,19 @@
             oscdata[value[0]] = value[1];
         });
         var i = 0;
+        console.log(i);
         $.each(oscdata, function(k, val) {
             $('#status:not(:has(#gest' + i + '))').append("<div id='gest" + i + "'/>");
             $('#gest' + i).html('k: ' + k + ', val: ' + val);
             i++;
+
+            // $('#status:not(:has(#gest' + i + '))').append('<div class="gest" id="gest' + i + '"/>');
+            // $('#gest' + i).html('<div class="key">' + k + '</div><div class="val">' + val + '</div>');
+            // console.log(k);
+            // $('#gest' + i + ' > .val').css({
+            //     'background-color': 'rgb(' + val + ',0,0)',
+            //     'width': val * 100
+            // });
         });
     });
     </script>

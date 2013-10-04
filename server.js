@@ -3,9 +3,12 @@ var app = require('http').createServer(handler),
     osc = require('node-osc'),
     fs = require('fs'),
     url = require('url'),
-    path = require('path');
+    path = require('path'),
+    open = require('open');
 
 app.listen(process.env.PORT || 8081);
+console.log('Server running at http://127.0.0.1:8081/');
+open('http://127.0.0.1:8081/');
 
 function handler(req, res) {
     var fpath = req.url;
@@ -65,3 +68,5 @@ io.sockets.on('connection', function(socket) {
         oscClient.send(obj);
     });
 });
+
+
